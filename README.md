@@ -1,7 +1,7 @@
- <H3>ENTER YOUR NAME</H3>
-<H3>ENTER YOUR REGISTER NO.</H3>
-<H3>EX. NO.8</H3>
-<H3>DATE:</H3>
+<H3>NAME : Easwari M</H3>
+<H3>REGISTER NO : 212223240033</H3>
+<H3>EX. NO.10</H3>
+<H3>DATE: 09.09.2026</H3>
 <H1 ALIGN =CENTER>Implementation of Speech Recognition</H1>
 <H3>Aim:</H3> 
  To implement the conversion of live speech to text.<BR>
@@ -22,9 +22,38 @@ Step 11: Perform speech recognition with exceptional handling:<Br>
 •	A generic exception block captures any other unexpected errors.<Br>
 <H3>Program:</H3>
 
-Insert your code her
+```
+!pip install speechrecognition
+!apt-get install -y portaudio19-dev
+!pip install PyAudio
+
+import speech_recognition as sr
+
+r = sr.Recognizer()
+
+audio_file_path = 'split.wav'
+
+try:
+    with sr.AudioFile(audio_file_path) as source:
+        print(f"Processing audio from {audio_file_path}...")
+        audio_data = r.record(source)  # Read the entire audio file
+        
+    text = r.recognize_google(audio_data)
+    print("You said:", text)
+
+except FileNotFoundError:
+    print(f"Error: Audio file '{audio_file_path}' not found. Make sure you've uploaded it correctly.")
+except sr.UnknownValueError:
+    print("Sorry, could not understand the audio.")
+except sr.RequestError as e:
+    print(f"Error with the request to Google Speech Recognition service: {e}")
+except Exception as e:
+    print(f"An unexpected error occurred: {e}")
+
+```
 
 <H3> Output:</H3>
-Show the results here
+<img width="1370" height="88" alt="image" src="https://github.com/user-attachments/assets/32e8c039-af21-493d-bd13-ac6b9d15f76d" />
+
 
 <H3> Result:</H3>
